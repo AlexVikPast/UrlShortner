@@ -1,0 +1,10 @@
+<a href="http://127.0.0.1:3000/s/vk_com">link</a>
+
+<h1>New Link</h1>
+
+<% unless Link.count.zero? %>
+  Last: <%= Link.last.url %>
+<% end %>
+<p>
+
+<%= render 'form', film: @link %>
