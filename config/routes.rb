@@ -9,4 +9,13 @@ Rails.application.routes.draw do
   root 'links#index'
 
   resources :links
+
+  # Подключаем шрифты
+  get '/fonts/glyphicons-halflings-regular.woff', to: redirect('/assets/glyphicons-halflings-regular.woff')
+
+  get '/assets/javascripts/bootstrap.min.js', to: redirect('/assets/javascripts/bootstrap.min.js')
+
+  get '/assets/stylesheets/main.css', to: redirect('/assets/stylesheets/main.css')
+  get '/assets/stylesheets/bootstrap.css', to: redirect('/assets/stylesheets/bootstrap.css')
+  
 end

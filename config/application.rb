@@ -23,6 +23,19 @@ module UrlShortner
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.i18n.default_locale = :ru
+
+    
+    # Подключаем локаль
+    config.i18n.default_locale = :ru                               
+    
+    config.assets.enabled = true
+    # Подключаем картинки
+    config.assets.paths << Rails.root.join("app", "assets", "images")
+    # Подключаем шрифты
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    # Подключаем JS
+    config.assets.paths << Rails.root.join("app", "assets", "javascripts")
+    # Подключаем CSS
+    config.assets.paths << Rails.root.join("app", "assets", "stylesheets")
   end
 end
