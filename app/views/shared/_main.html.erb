@@ -1,15 +1,54 @@
+<%
+  def generate_qr_code(url)
+    qr_code = QrCode::QrCodeGenerator.generate_qr_code(url)
+    render inline: qr_code
+  end
+%>
+
 <div id="headerwrap">
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
         <h1>Make your landing page<br/>
         look really good.</h1>
-        <form class="form-inline" role="form">
+
+        <%= form_with model: @link, role: "form", class: "form-inline" do |form| %>
           <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your url address">
+            <%= form.url_field :url, { 
+              placeholder: "URL", 
+              required: true, 
+              maxlength: Link::MAX_LENGTH, 
+              minlength: Link::MIN_LENGTH,
+              size: 25, 
+              class: "form-control",
+              id: "exampleInputEmail1", 
+              placeholder: "Enter your url address",
+              value: @url
+            } %>
           </div>
-          <button type="submit" class="btn btn-warning btn-lg">Invite Me!</button>
-        </form>	
+            <%= form.submit "Create", { class: "btn btn-warning btn-lg", style: "width: 100px" }%>
+        <% end %>
+      
+         <% if @slug %>
+          <div class="form-inline">
+            <div class="form-group">
+              <input size="33" class="form-control" id="inputText" type="text" readonly value=<%= @slug %>>
+              <button class="btn btn-warning btn-lg" id="copyText" style="width: 100px;">Copy &nbsp</button>
+              <div align="left"><%= generate_qr_code(@slug) %></div>
+            </div>
+          </div>
+        <% end %>
+
+        <script>
+          var text = document.getElementById("inputText");
+          var btn = document.getElementById("copyText");
+
+          btn.onclick = function() {
+            text.select();    
+            document.execCommand("copy");
+            return false;
+          }
+        </script>    
 
       </div><!-- /col-lg-6 -->
       <div class="col-lg-6">

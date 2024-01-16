@@ -37,12 +37,10 @@
   <body>
 
     <%= render partial: 'shared/navbar' %>
-    <%= render partial: 'shared/main' %>
-    <%= render partial: 'shared/description' %>
-    <%= render partial: 'shared/carousel' %>
-    <%= render partial: 'shared/devs' %>
-
+    
     <%= yield %>
+
+    <%= render partial: 'shared/creator' %>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -67,3 +67,4 @@ group :test do
 end
 
 gem 'russian'
+gem "rqrcode", "~> 2.0"

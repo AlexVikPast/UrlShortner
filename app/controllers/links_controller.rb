@@ -1,8 +1,4 @@
 class LinksController < ApplicationController
-  def index
-    @link = Link.new
-  end
-
   def show
     link = Link.find_by(slug: params[:slug])
     if link.present?
@@ -17,16 +13,16 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.create(url_params)
+    @link = Link.find_or_create_by(url_params)
     if @link.save
-      redirect_to root_path @link
-    else
-      render :index, status: :unprocessable_entity
+      @slug = @link.short
+      @url = @link.url
     end
+    render :new, status: :unprocessable_entity
   end
 
   private
   def url_params
-      params.require(:link).permit(:url)
+    params.require(:link).permit(:url)
   end
 end

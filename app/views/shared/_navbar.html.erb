@@ -7,10 +7,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><b>CLICK</b></a>
+      <b><%= link_to "CLICK", root_path, { class: "navbar-brand" } %></b>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home", root_path %></li>
+        <li><a>|</a></li>
+        <li><%= link_to "About", about_path %></li>
+        <li><a>|</a></li>
         <li><a href="#">Sign Up</a></li>
         <li><a>|</a></li>
         <li><a href="#">Sign In</a></li>

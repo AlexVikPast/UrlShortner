@@ -14,6 +14,10 @@ class Link < ApplicationRecord
 
   after_validation :find_or_craete_slug
 
+  def short
+    Rails.application.routes.url_helpers.short_url(slug: self.slug, host: HOST)
+  end
+
   private
   def find_or_craete_slug
     self.slug = set_uuid if self.class.find_by(url: url).nil?

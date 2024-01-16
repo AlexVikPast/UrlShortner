@@ -5,17 +5,15 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  get '/s/:slug', to: 'links#show'
-  root 'links#index'
-
-  resources :links
+  root 'links#new'
+  get '/s/:slug', to: 'links#show', as: :short
+  resources :links #, :only => [:show, :create]
 
   # Подключаем шрифты
   get '/fonts/glyphicons-halflings-regular.woff', to: redirect('/assets/glyphicons-halflings-regular.woff')
-
   get '/assets/javascripts/bootstrap.min.js', to: redirect('/assets/javascripts/bootstrap.min.js')
-
   get '/assets/stylesheets/main.css', to: redirect('/assets/stylesheets/main.css')
   get '/assets/stylesheets/bootstrap.css', to: redirect('/assets/stylesheets/bootstrap.css')
-  
+
+  get "/about/", to: "about#index"
 end
